@@ -8,9 +8,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-      - run: |
-          pip install pylint
-          pylint hello.py
+      - run: pip install pylint
+      - run: pylint hello.py
   test:
     runs-on: ubuntu-latest
     steps:
