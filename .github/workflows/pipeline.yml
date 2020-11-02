@@ -6,16 +6,18 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-      - run: pip install pylint
-      - run: pylint hello.py
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1.1.1
+    - run: pip install pylint
+    - run: pylint hello.py
   test:
+    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v2
   build:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
