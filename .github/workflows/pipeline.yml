@@ -8,6 +8,9 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+      - run: |
+          pip install pylint
+          pylint hello.py
   test:
     runs-on: ububtu-latest
     steps:
