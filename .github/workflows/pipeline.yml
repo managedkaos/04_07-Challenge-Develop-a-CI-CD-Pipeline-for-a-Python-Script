@@ -3,22 +3,17 @@ name: Simple Python CI/CD Pipeline
 on: [push]
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1.1.1
-    - run: pip install pylint
-    - run: pylint hello.py
   test:
-    needs: [lint]
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - run: python hello.py
   build:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/upload-artifact@v2
+        with:
+          name: hello
+          path: .
